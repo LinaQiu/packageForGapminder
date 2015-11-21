@@ -4,11 +4,9 @@
 \alias{gapminder_lmfit}
 \title{Model Population VS Year for countries in gapminder dataset.}
 \usage{
-gapminder_lmfit(data, countryName, offset = 1952)
+gapminder_lmfit(countryName, offset = 1952)
 }
 \arguments{
-\item{data}{Here would be gapminder.}
-
 \item{countryName}{character this should be the name of country that you want to explore in gapminder dataset.}
 
 \item{offset}{this can be used to specify an a priori known component to be included in the linear predictor
@@ -25,6 +23,5 @@ and fitError(=sum of residuals^2) of fitted linear model back at the same time.
 }
 \examples{
 gapminder_lmfit(gapminder,"Canada")
-
 }
 
