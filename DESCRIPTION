@@ -1,6 +1,6 @@
 Package: packageForGapminder
-Title: Make it easier to see whether there is any linear relationship between
-    population and time for countries in GAPMINDER dataset.
+Title: Make it easier to see whether there is any linear relationship between population and
+time for countries in GAPMINDER dataset.
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: While we take a look into population and time in dataset GAPMINDER,

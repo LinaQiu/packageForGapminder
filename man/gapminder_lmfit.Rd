@@ -2,29 +2,29 @@
 % Please edit documentation in R/gapminder_lmfit.R
 \name{gapminder_lmfit}
 \alias{gapminder_lmfit}
-\title{Model Population VS Year for countries in GAPMINDER dataset.}
+\title{Model Population VS Year for countries in gapminder dataset.}
 \usage{
-gapminder_lmfit(data, offset = 1952)
+gapminder_lmfit(data, countryName, offset = 1952)
 }
 \arguments{
-\item{data}{a data frame, containing the variables "population" and "year" for a country in GAPMINDER dataset.}
+\item{data}{Here would be gapminder.}
+
+\item{countryName}{character this should be the name of country that you want to explore in gapminder dataset.}
 
 \item{offset}{this can be used to specify an a priori known component to be included in the linear predictor
-during fitting. In this function, the default value of offset is 1952, because we want to make the intersect
-of fitted linear model be the predicted value for year 1952, the year when GAPMINDER dataset began to record
-data.}
+during fitting. In this function, the default value of offset is 1952, because we think it makes more sense for
+the intercept to correspond to population in 1952, the earliest date in gapminder dataset.}
 }
 \value{
 list
 }
 \description{
-gapminder_lmfit is used to fit linear models to population and time for countries in GAPMINDER dataset.
-It can be used to carry out regression between population and time, and return the coefficients, residuals
-and fitError(=sum of residuals^2) back at the same time.
+gapminder_lmfit is used to fit linear models to population and time for a specific country in gapminder dataset.
+It can be used to carry out regression between population and time, then it will return the coefficients, residuals
+and fitError(=sum of residuals^2) of fitted linear model back at the same time.
 }
 \examples{
-canadaData <- gapminder \%>\% filter(country=="Canada") \%>\% arrange(year) \%>\% select(year,pop)
-gapminder_lmfit(canadaData)
+gapminder_lmfit(gapminder,"Canada")
 
 }
 

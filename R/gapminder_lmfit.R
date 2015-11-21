@@ -1,26 +1,36 @@
-#' @title Model Population VS Year for countries in GAPMINDER dataset.
+#' @title Model Population VS Year for countries in gapminder dataset.
 #'
-#' @description gapminder_lmfit is used to fit linear models to population and time for countries in GAPMINDER dataset.
-#' It can be used to carry out regression between population and time, and return the coefficients, residuals
-#' and fitError(=sum of residuals^2) back at the same time.
+#' @description gapminder_lmfit is used to fit linear models to population and time for a specific country in gapminder dataset.
+#' It can be used to carry out regression between population and time, then it will return the coefficients, residuals
+#' and fitError(=sum of residuals^2) of fitted linear model back at the same time.
 #'
-#' @param data a data frame, containing the variables "population" and "year" for a country in GAPMINDER dataset.
+#' @param data Here would be gapminder.
+#' @param countryName character this should be the name of country that you want to explore in gapminder dataset.
 #' @param offset this can be used to specify an a priori known component to be included in the linear predictor
-#' during fitting. In this function, the default value of offset is 1952, because we want to make the intersect
-#' of fitted linear model be the predicted value for year 1952, the year when GAPMINDER dataset began to record
-#' data.
+#' during fitting. In this function, the default value of offset is 1952, because we think it makes more sense for
+#' the intercept to correspond to population in 1952, the earliest date in gapminder dataset.
 #'
 #' @return list
 #' @export
 #' @examples
-#' canadaData <- gapminder %>% filter(country=="Canada") %>% arrange(year) %>% select(year,pop)
-#' gapminder_lmfit(canadaData)
+#' gapminder_lmfit(gapminder,"Canada")
 #'
-gapminder_lmfit <- function(data,offset=1952)
+gapminder_lmfit <- function(data,countryName,offset=1952)
 {
+  if(countryName == ""){
+    return("Please supply a name of a country that you would like to explore.")
+  }
+  ##Get names for all countries in gapminder dataset, which are pre-stored at a file named "countryNames"
+  countryNames <- dget("countryNames")
+
+  if(!(countryName %in% countryNames)){
+    return("The country name you provided not found in gapminder. Please try an existing country name...")
+  }
+
+  countryData <- data %>% filter(country==countryName)
   results <- vector("list",4)
-  lmfit <- lm(pop~I(year-offset),data)
-  intersect <- setNames(coef(lmfit)[1],"intersect")
+  lmfit <- lm(pop~I(year-offset),countryData)
+  intersect <- setNames(coef(lmfit)[1],"intercept")
   slope <- setNames(coef(lmfit)[2],"slope")
   res <- lmfit$residuals
   fitError <- setNames(sum(res^2),"fitError(sumOFres^2)")
