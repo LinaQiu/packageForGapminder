@@ -2,26 +2,31 @@
 % Please edit documentation in R/gapminder_lmfit.R
 \name{gapminder_lmfit}
 \alias{gapminder_lmfit}
-\title{Model Population VS Year for countries in gapminder dataset.}
+\title{Model pop/lifeExp/gdpPercap VS year for countries in gapminder dataset.}
 \usage{
-gapminder_lmfit(countryName, offset = 1952)
+gapminder_lmfit(countryName, x = "year", y = "pop", offset = 1952)
 }
 \arguments{
 \item{countryName}{character this should be the name of country that you want to explore in gapminder dataset.}
 
+\item{x}{character default value would be "year" here.}
+
+\item{y}{character this could be one of the three variables(pop/lifeExp/gdpPercap) in gapminder dataset. Default value of y is "pop".}
+
 \item{offset}{this can be used to specify an a priori known component to be included in the linear predictor
 during fitting. In this function, the default value of offset is 1952, because we think it makes more sense for
-the intercept to correspond to population in 1952, the earliest date in gapminder dataset.}
+the intercept to correspond to pop/lifeExp/gdpPercap in 1952, the earliest date in gapminder dataset.}
 }
 \value{
 list
 }
 \description{
-gapminder_lmfit is used to fit linear models to population and time for a specific country in gapminder dataset.
-It can be used to carry out regression between population and time, then it will return the coefficients, residuals
+gapminder_lmfit is used to fit linear models to pop/lifeExp/gdpPercap and year for a specific country in gapminder dataset.
+It can be used to carry out regression between pop/lifeExp/gdpPercap and year, then it will return the coefficients, residuals
 and fitError(=sum of residuals^2) of fitted linear model back at the same time.
 }
 \examples{
-gapminder_lmfit(gapminder,"Canada")
+gapminder_lmfit("Canada")
+gapminder_lmfit("Canada","year","lifeExp")
 }
 
