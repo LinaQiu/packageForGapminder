@@ -1,26 +1,25 @@
 ---
-title: "packageForGapminder"
-author: "Lina Qiu"
-date: "`r Sys.Date()`"
-output: 
-   rmarkdown::html_vignette:
-   toc: true
-   keep_md: true
-vignette: >
-  %\VignetteIndexEntry{packageForGapminder}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 # About packageForGapminder
 
-`packageForGapminder` is a package which makes model pop/lifeExp/gdpPercap VS year for countries in gapminder dataset easier, as well as makes it possible to use only one line code to help you get a intuitive view on how well pop/lifeExp/gdpPercap and year in gapminder dataset fits a linear model.
+`packageForGapminder` is a package which makes model pop/lifeExp/gdpPercap VS year for countries in gapminder dataset easier, as well as makes it possible to use only one line code to help you get a intuitive view on how well pop/lifeExp/gdpPercap and year in gapminder dataset fits a linear model. All functions here are based on my [homework4](https://github.com/STAT545-UBC/lina_qiu/blob/master/STAT545/Homework04/Homework04.md) for STAT545.
 
 To install the package:
 
+```{r installation, eval=FALSE}
+##Make sure you load devtools package first
+library(devtools)
+##Install packageForGapminder
+devtools::install_github("LinaQiu/packageForGapminder")
+```
+
+Load packages here:
 ```{r}
-library(packageForGapminder)
-## load some other packages here
+library(packageForGapminder) 
 library(knitr)
 options(knitr.table.format="markdown")        #Set the format for tables as "markdown"
 ```
@@ -65,4 +64,4 @@ gapminder_lm_plot("Canada","year","lifeExp")
 gapminder_lm_plot("China","year","gdpPercap")
 ```
 
-`packageForGapminder` really makes it easier to check the linear relationships between `pop/lifeExp/gdpPercap` and `year` for a gapminder country. 
+`packageForGapminder` really makes it easier to check the linear relationships between `pop/lifeExp/gdpPercap` and `year` for a gapminder country. Enjoy it!
