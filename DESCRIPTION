@@ -12,7 +12,7 @@ Description: While we take a look into pop/lifeExp/gdpPercap and year in dataset
     for different countries in GAPMINDER easier, as well as to help you get a intuitive view
     on how well country's pop/lifeExp/gdpPercap and year fit the linear model by creating a
     table and plot for the fitted linear model.
-Depends:
+Depends: 
     R (>= 3.2.2),
     dplyr,
     gapminder,
@@ -20,5 +20,7 @@ Depends:
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
-Suggests: testthat
-
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
