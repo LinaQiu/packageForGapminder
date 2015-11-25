@@ -1,58 +1,57 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "packageForGapminder"
+author: "Lina Qiu"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+   rmarkdown::html_vignette:
+   toc: true
+   keep_md: true
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{packageForGapminder}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+About packageForGapminder
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+`packageForGapminder` is a package which makes model pop/lifeExp/gdpPercap VS year for countries in gapminder dataset easier, as well as makes it possible to use only one line code to help you get a intuitive view on how well pop/lifeExp/gdpPercap and year in gapminder dataset fits a linear model.
 
-## Vignette Info
+To install the package:
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r}
+devtools::install_github("LinaQiu/packageForGapminder")
+library(packageForGapminder)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+In this package, we have three functions in total. See below.
+* `gapminder_lmfit()`: Fit a linear model to pop/lifeExp/gdpPercap VS year for a country in gapminder dataset. 
+* `gapminder_lm_table()`: Create a table for fitted linear model between variables pop/lifeExp/gdpPercap and year in gapminder dataset.
+* ```gapminder_lm_plot()`:Draw a plot to show how well pop/lifeExp/gdpPercap and year in gapminder dataset fits a linear model.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+Besides, by default, all these three funtions will fit the linear model to data `pop` VS `year` for a gapminder country.
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+Using `gapminder_lmfit()` to fit linear model to gapminder country data.
 
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r}
+gapminder_lmfit("Canada")                   ##fit a linear model to pop VS year for "Canada"
+gapminder_lmfit("Canada","year","lifeExp")  ##fit a linear model to lifeExp VS year for "Canada"
+gapminder_lmfit("China","year","gdpPercap") ##fit a linear model to gdpPercap VS year for "China"
 ```
 
-Also a quote using `>`:
+Using `gapminder_lm_table()` to get the table which compares the actual pop/lifeExp/gdpPercap values with the predicted values that we get from the linear model.
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+```{r}
+gapminder_lm_table("Canada")
+gapminder_lm_table("Canada","year","lifeExp")
+gapminder_lm_table("China","year","gdpPercap")
+```
+
+Using `gapminder_lm_plot()` to draw a plot to give you an intuitive view on how well a gapminder country data(pop/lifeExp/gdpPercap VS year) fits a linear model.
+
+```{r}
+gapminder_lm_plot("Canada")
+gapminder_lm_plot("Canada","year","lifeExp")
+gapminder_lm_table("China","year","gdpPercap")
+```
+
+`packageForGapminder` really makes it easier to check the linear relationships between `pop/lifeExp/gdpPercap` and `year` for a gapminder country. 

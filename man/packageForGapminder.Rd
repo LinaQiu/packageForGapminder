@@ -12,6 +12,6 @@ employ lm() to fit a linear model to the data, and write a bunch lines of code t
 intuitively. It would be very annoying if you must repeat all codes everytime when you want to check the relationship for a
 country. Therefore, this package is created to make it easier to model pop/lifeExp/gdpPercap VS year for countries in gapminder
 dataset, as well as to make it possible to use only one line code to help you get a intuitive view on how well pop/lifeExp/gdpPercap
-and year in gapminder dataset fits a linear model
+and year in gapminder dataset fits a linear model.
 }
 
