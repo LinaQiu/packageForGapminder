@@ -24,3 +24,5 @@ Suggests: testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/LinaQiu/packageForGapminder
+BugReports: https://github.com/LinaQiu/packageForGapminder/issues
