@@ -39,7 +39,7 @@ gapminder_lm_table <- function(countryName,x="year",y="pop")
 
   a=coef(fit)[2];
   b=coef(fit)[1];
-  predictDATA <-  data.frame(x=countryData[[x]],predicted_y=a*countryData[[x]]+b)
+  predictDATA <-  data.frame(year=countryData[[x]],predicted_y=a*countryData[[x]]+b)
   predictDATA1 <-  predictDATA %>% mutate(actual_y=countryData[[y]],D_value=(actual_y-predicted_y))
   tbl_df(predictDATA1)
 }
